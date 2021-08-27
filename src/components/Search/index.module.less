@@ -1,0 +1,40 @@
+.search {
+  &__input-row {
+    width: 800px;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-top: 30vh;
+  }
+  &__input {
+    border: none;
+    width: 0px;
+    flex: 1;
+    height: 100%;
+    background: none;
+    outline: none;
+    margin-left: 10px;
+    font-size: 18px;
+  }
+  &__button {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-radius: 0;
+    background-color: transparent;
+    line-height: inherit;
+    width: max-content;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    margin-right: 10px;
+    svg {
+      height: 30px;
+    }
+  }
+  &__button::after {
+    border: none;
+  }
+}
