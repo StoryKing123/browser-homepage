@@ -58,6 +58,7 @@ const Search: FC<SearchProp> = ({ className }) => {
 
   useEffect(() => {
     inputRef.current?.addEventListener("keydown", handleEnter);
+    inputRef.current?.focus();
     return () => {
       inputRef.current?.removeEventListener("keydown", handleEnter);
     };
@@ -69,6 +70,8 @@ const Search: FC<SearchProp> = ({ className }) => {
         <input
           ref={inputRef}
           type="text"
+          id="search-input"
+          autoFocus
           className={style["search__input"]}
           onChange={handleInputChange}
           placeholder="搜索网页"

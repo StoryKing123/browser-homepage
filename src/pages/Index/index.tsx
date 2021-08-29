@@ -18,6 +18,7 @@ const Index: FC = () => {
 
   return (
     <div className={style.container}>
+      <img className={style["container__bg"]}></img>
       <div className={style["weather-wrap"]}>
         <Weahter temp={weather.temp} text={weather.text}>
           {" "}
