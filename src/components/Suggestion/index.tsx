@@ -14,11 +14,28 @@ const Suggestion: FC<SuggestionType> = ({
 }) => {
   const [sugIndex, setSugIndex] = useState(-1);
   const sugIndexRef = useRef(sugIndex);
+  const sugListRef = useRef(sugList);
 
   const moveIndex = (index: number) => {
-    index < 0 && (sugIndexRef.current = sugList.length - 1);
-    index >= sugList.length && (sugIndexRef.current = 0);
-    setSugIndex(sugIndexRef.current);
+    // console.log(`length:${sugList.length}`);
+
+    console.log(`before:${index}`);
+    if (index < 0) {
+      console.log("set last");
+
+      index = sugListRef.current.length - 1;
+      // sugIndexRef.current = sugList.length - 1;
+    } else if (index >= sugListRef.current.length) {
+      console.log("change 0");
+      index = 0;
+      // sugIndexRef.current = 0;
+    } else {
+      // sugIndexRef.current = index;
+    }
+    console.log(`index:${index}`);
+
+    sugIndexRef.current = index;
+    setSugIndex(index);
   };
 
   const hanldeUpdateSearchInput = (kw: string) => {
@@ -30,26 +47,30 @@ const Suggestion: FC<SuggestionType> = ({
   };
 
   const handleListener = (e: KeyboardEvent) => {
-    e.code === "ArrowDown" && moveIndex(sugIndexRef.current +=  1);
-    e.code === "ArrowUp" && moveIndex(sugIndexRef.current -= 1);
+    console.log(sugIndexRef);
+    if (e.code === "ArrowDown") {
+      e.preventDefault();
+
+      moveIndex(sugIndexRef.current + 1);
+    } else if (e.code === "ArrowUp") {
+      e.preventDefault();
+      moveIndex(sugIndexRef.current - 1);
+    }
   };
 
   useEffect(() => {
     hanldeUpdateSearchInput(sugList[sugIndex]?.q);
-    sugIndexRef.current = sugIndex;
+    // sugIndexRef.current = sugIndex;
   }, [sugIndex]);
+  useEffect(() => {
+    sugListRef.current = sugList;
+  }, [sugList]);
   useEffect(() => {
     window.addEventListener("keyup", handleListener);
     return () => {
       window.removeEventListener("keyup", handleListener);
     };
   }, []);
-  // useEffect(() => {
-  //   window.addEventListener("keyup", handleListener);
-  //   return () => {
-  //     window.removeEventListener("keyup", handleListener);
-  //   };
-  // }, [sugIndex]);
   return (
     <div className={style["sug__wrap"]}>
       {sugList.map((item: any, index) => (
@@ -57,6 +78,7 @@ const Suggestion: FC<SuggestionType> = ({
           className={`${style["sug__item"]} ${
             index === sugIndex ? style["sug__item--active"] : ""
           }`}
+          key={item.q}
           onClick={() => handleSearch(item.q)}
         >
           {item.q}

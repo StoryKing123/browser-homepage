@@ -28,7 +28,6 @@ const Search: FC<SearchProp> = ({ className }) => {
   };
   const handleSearchJump = (value: string) => {
     const searchEngine = localStorage.getItem("searchEngine");
-
     const getSearchEngineUrl = () => {
       let result: string = "";
       searchEngine === "google" &&
@@ -40,6 +39,10 @@ const Search: FC<SearchProp> = ({ className }) => {
   };
 
   const handleEnter = (e: any) => {
+    if (e.code === "ArrowUp" || e.code === "ArrowDown") {
+      e.preventDefault();
+    }
+
     if (e.keyCode !== 13) {
       return;
     }
@@ -66,7 +69,11 @@ const Search: FC<SearchProp> = ({ className }) => {
 
   return (
     <div className={style.search}>
-      <div className={`${style["search__input-row"]} ${className}`}>
+      <div
+        className={`${style["search__input-row"]} ${className} ${
+          sugList.length > 0 ? style['search__input-row--sug'] : ""
+        } `}
+      >
         <input
           ref={inputRef}
           type="text"

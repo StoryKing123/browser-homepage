@@ -1,10 +1,13 @@
 .weather {
   font-size: 26px;
   color: #fff;
-  font-weight: bold;
-  position: relative;
+
   height: 50px;
-  display: flex;
+  &__temp__wrap {
+    display: flex;
+    font-weight: bold;
+    position: relative;
+  }
   &__temp-symbol {
     font-size: 16px;
     display: flex;
@@ -14,5 +17,8 @@
   }
   &__text {
     margin-left: 10px;
+  }
+  &__segmentation {
+    margin: 0 5px;
   }
 }
