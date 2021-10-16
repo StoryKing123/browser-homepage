@@ -1,23 +1,25 @@
 .sug {
-  &__wrap {
-    width: 100%;
-    background: #fff;
-    // border-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-  &__item {
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-    &:hover {
-      background-color: #e5e5e5;
+    &__wrap {
+        width: 100%;
+        background: #fff;
+        // position: absolute;
+        // bottom: 0px;
+        // border-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
     }
-    &:first-child {
-      //       margin-top: 0px;
+    &__item {
+        font-weight: bold;
+        padding: 10px;
+        cursor: pointer;
+        &:hover {
+            background-color: #e5e5e5;
+        }
+        &:first-child {
+            //       margin-top: 0px;
+        }
+        &--active {
+            background-color: #e5e5e5;
+        }
     }
-    &--active {
-      background-color: #e5e5e5;
-    }
-  }
 }

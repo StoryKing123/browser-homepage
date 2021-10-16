@@ -5,6 +5,7 @@ import Weahter from '../../components/Weahter';
 import Search from '@/components/Search';
 import Setting from '@/components/Setting';
 import BackgroundImg from '@/components/BackgroundImg';
+import BookMark from '@/components/BookMark';
 
 const Index: FC = () => {
     const [weather, setWeather] = useState<any>({});
@@ -26,9 +27,8 @@ const Index: FC = () => {
                     {' '}
                 </Weahter>
             </div>
-
             <Search className={style['search-wrap']}></Search>
-
+            <BookMark/>
             <div className={style['setting-wrap']}>
                 <Setting></Setting>
             </div>

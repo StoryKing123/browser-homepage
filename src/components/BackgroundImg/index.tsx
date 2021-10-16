@@ -22,7 +22,7 @@ const BackgroundImg: FC = () => {
     return (
         <img
             className={style['background-img__bg']}
-            style={{ backgroundImage: `url(${imgUrl})` }}
+            style={{ content: `url(${imgUrl})` }}
         ></img>
     );
 };
